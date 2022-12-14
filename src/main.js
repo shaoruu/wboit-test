@@ -69,10 +69,14 @@ new TextureLoader().load(LeavesImage, (texture) => {
 });
 
 const resize = () => {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  renderer.setSize(width, height);
+  camera.aspect = width / height;
   camera.updateProjectionMatrix();
+  composer.setSize(width, height);
 };
+
 resize();
 
 new OrbitControls(camera, renderer.domElement);
