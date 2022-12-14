@@ -2,6 +2,7 @@ import { Color, TextureLoader } from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GammaCorrectionShader } from 'three/examples/jsm/shaders/GammaCorrectionShader';
 import { WboitPass, WboitUtils, sRGBShader } from 'three-wboit';
 import './style.css';
 import { TextureAtlas } from './texture';
@@ -37,7 +38,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 const composer = new EffectComposer(renderer);
 const wboitPass = new WboitPass(renderer, scene, camera, new Color());
 composer.addPass(wboitPass);
-composer.addPass(new ShaderPass(sRGBShader));
+composer.addPass(new ShaderPass(GammaCorrectionShader));
 
 new TextureLoader().load(LeavesImage, (texture) => {
   const atlas = TextureAtlas.createSingle('test', texture, {
